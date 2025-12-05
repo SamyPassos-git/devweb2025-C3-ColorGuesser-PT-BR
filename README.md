@@ -28,6 +28,12 @@ O usuário tem 3 tentativas para acertar a cor. Se acertar, a página muda de co
 
 ---
 
+## Link para jogar:
+* Espero que goste! 😊
+* https://samypassos-git.github.io/devweb2025-C3-ColorGuesser-PT-BR/
+
+---
+
 ## ✨ Tecnologias Utilizadas
 * HTML5: Estrutura semântica da aplicação.
 * CSS3: Estilização responsiva, centralização e transições suaves de cor de fundo.
