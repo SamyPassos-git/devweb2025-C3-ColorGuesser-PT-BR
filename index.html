@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinhe a Cor - Jogo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="fundo-jogo" id="fundoJogo">
+        <div class="container-jogo">
+            <!-- Título e Subtítulo -->
+            <h1 class="titulo-jogo">🎮 Adivinhe a Cor</h1>
+            <p class="subtitulo-jogo">Adivinhe a cor oculta!</p>
+
+            <!-- Contador de tentativas -->
+            <div class="secao-tentativas">
+                <span class="rotulo-tentativas">Tentativas restantes:</span>
+                <div class="circulos-tentativas" id="circulosTentativas">
+                    <div class="circulo ativo"></div>
+                    <div class="circulo ativo"></div>
+                    <div class="circulo ativo"></div>
+                </div>
+            </div>
+
+            <!-- Campo de entrada -->
+            <div class="secao-entrada">
+                <input 
+                    type="text" 
+                    id="entradaCor" 
+                    class="entrada-cor" 
+                    placeholder="Digite um nome de cor..."
+                    autocomplete="off"
+                >
+            </div>
+
+            <!-- Botão de adivinhar -->
+            <button id="botaoAdivinhar" class="botao-adivinhar">🎯 Adivinhar</button>
+
+            <!-- Mensagem de feedback -->
+            <div id="feedback" class="mensagem-feedback"></div>
+            <!-- Dica breve: mostra a primeira letra da cor secreta após uma tentativa errada -->
+            <div id="feedbackDica" class="mensagem-dica" aria-live="polite"></div>
+
+            <!-- Botão de jogar novamente -->
+            <button id="botaoJogarNovamente" class="botao-jogar-novamente" style="display: none;">🔄 Jogar Novamente</button>
+
+            <!-- Instruções -->
+            <div class="instrucoes">
+                <p class="titulo-instrucoes">Como jogar:</p>
+                <ul class="lista-instrucoes">
+                    <li>Adivinhe a cor oculta em 3 tentativas</li>
+                    <li>Digite o nome da cor e clique em Adivinhar</li>
+                    <li>Você verá o fundo mudar para a cor correta se vencer!</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Painel lateral com lista de cores disponíveis -->
+        <aside class="painel-cores" id="painelCores" aria-label="Lista de cores disponíveis"></aside>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,384 @@
+/* Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  background: linear-gradient(135deg, #6c3497 0%, #87ceeb 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Elementos gráficos */
+
+.fundo-jogo {
+  background: linear-gradient(135deg, #6c3497 0%, #87ceeb 100%);
+  transition: background 0.8s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  z-index: 0;
+  pointer-events: auto;
+}
+
+.container-jogo {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+/* Painel lateral com lista de cores */
+.painel-cores {
+  background-color: rgba(255, 255, 255, 0.98);
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 300px;
+  width: 100%;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+  position: relative;
+  z-index: 1;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.painel-cores h2 {
+  margin-bottom: 12px;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.cor-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.08s ease;
+}
+.cor-item:hover {
+  background: rgba(135, 206, 235, 0.08);
+  transform: translateY(-2px);
+}
+.cor-swatch {
+  width: 36px;
+  height: 22px;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+  flex: 0 0 auto;
+}
+.cor-nome {
+  font-size: 0.98em;
+  color: #333;
+  word-break: break-word;
+}
+
+.titulo-jogo {
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #6c3497 0%, #87ceeb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitulo-jogo {
+  text-align: center;
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 1.1em;
+  font-style: italic;
+}
+
+.secao-tentativas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.rotulo-tentativas {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #333;
+}
+
+.circulos-tentativas {
+  display: flex;
+  gap: 8px;
+}
+
+.circulo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.circulo.ativo {
+  background-color: #87ceeb;
+}
+
+.secao-entrada {
+  margin-bottom: 20px;
+}
+
+.entrada-cor {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1em;
+  border: 2px solid #87ceeb;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.entrada-cor:focus {
+  border-color: #87ceeb;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.entrada-cor:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  border-color: #ccc;
+}
+
+.botao-adivinhar,
+.botao-jogar-novamente {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.botao-adivinhar {
+  background-color: #6c3497;
+}
+
+.botao-adivinhar:hover:not(:disabled) {
+  background-color: #87ceeb;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(135, 206, 235);
+}
+
+.botao-adivinhar:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.botao-jogar-novamente {
+  background-color: #4caf50;
+  margin-bottom: 0;
+}
+
+.botao-jogar-novamente:hover {
+  background-color: #388e3c;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
+}
+
+.mensagem-feedback {
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 1.05em;
+  font-weight: 500;
+  text-align: center;
+  border: 2px solid transparent;
+  animation: deslizeEntrada 0.4s ease;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mensagem-feedback.sucesso {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-color: #4caf50;
+}
+
+.mensagem-feedback.erro {
+  background-color: #ffebee;
+  color: #c62828;
+  border-color: #ef5350;
+}
+
+/* Pequena dica com a primeira letra da cor secreta */
+.mensagem-dica {
+  padding: 8px 12px;
+  font-size: 0.95em;
+  color: #333;
+  text-align: center;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.02);
+}
+
+@keyframes deslizeEntrada {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.instrucoes {
+  margin-top: 30px;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  font-size: 0.9em;
+  color: #666;
+  line-height: 1.6;
+}
+
+.titulo-instrucoes {
+  margin: 0 0 10px 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.lista-instrucoes {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.lista-instrucoes li {
+  margin-bottom: 5px;
+}
+
+/* Design responsivo */
+@media (max-width: 600px) {
+  .container-jogo {
+    padding: 30px 20px;
+  }
+
+  .titulo-jogo {
+    font-size: 2em;
+  }
+
+  .rotulo-tentativas {
+    font-size: 1em;
+  }
+
+  .entrada-cor,
+  .botao-adivinhar,
+  .botao-jogar-novamente {
+    padding: 12px;
+    font-size: 1em;
+  }
+  .fundo-jogo {
+    flex-direction: column;
+    gap: 16px;
+    padding: 18px;
+  }
+}
+
+/* Mobile tighter layout: scale down for small phones */
+@media (max-width: 420px) {
+  body {
+    padding: 12px;
+  }
+
+  .fundo-jogo {
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .container-jogo {
+    padding: 18px;
+    max-width: 420px;
+  }
+
+  .titulo-jogo {
+    font-size: 1.6em;
+    margin-bottom: 6px;
+  }
+
+  .subtitulo-jogo {
+    font-size: 0.95em;
+    margin-bottom: 18px;
+  }
+
+  .circulo {
+    width: 22px;
+    height: 22px;
+  }
+
+  .entrada-cor,
+  .botao-adivinhar,
+  .botao-jogar-novamente {
+    padding: 10px;
+    font-size: 0.95em;
+  }
+
+  .botao-adivinhar {
+    font-size: 1em;
+  }
+
+  .mensagem-feedback {
+    min-height: 50px;
+    font-size: 0.95em;
+    padding: 10px;
+  }
+
+  .mensagem-dica {
+    font-size: 0.9em;
+    padding: 6px;
+    margin-bottom: 8px;
+  }
+
+  /* Panel becomes full-width below the game card but with smaller items */
+  .painel-cores {
+    max-width: 420px;
+    width: 100%;
+    padding: 12px;
+    max-height: 260px;
+  }
+
+  .cor-swatch {
+    width: 28px;
+    height: 18px;
+    border-radius: 5px;
+  }
+
+  .cor-item {
+    padding: 6px;
+    gap: 8px;
+  }
+}
